@@ -16,6 +16,10 @@
         .sevenSegmentTable {color: white;border-color: white;
                             border: solid;border-collapse: collapse;}
         .notsevenSegmentTable {border: none;}
+        .horizontal {width: 40px; height: 10px;}
+        .vertical {width: 10px; height: 40px;}
+        .red {background-color: red;}
+        .black {background-color: black;}
     </style>
     <script>
         function display(number){
@@ -28,15 +32,11 @@
             var ssd = bin2ssd(bcd)
             document.getElementById("bin2ssd_output").innerHTML=ssd
             //send ssd signal to function illuminate_segments()
-            document.getElementById("illuminate_input").innerHTML=ssd
+            document.getElementById("segments").innerHTML=ssd
             illuminate(ssd)
-            document.getElementById("illuminate_output").innerHTML='done'
         }
         
-        function illuminate(signals){
-            document.getElementById("illuminate_output").innerHTML = signals
-        }
-        
+
         function dec2bin(decimal){
             binary = ["0000","0001","0010","0011","0100","0101","0110","0111","1000","1001"]
             return (binary[decimal])
@@ -86,6 +86,47 @@
             if (g) {output = output + '1'} else {output = output + '0'}
             return (output)
         }
+        
+        function illuminate(signals){
+            document.getElementById("segments").innerHTML = signals
+            if (signals[0] == '1'){
+                document.getElementById("segmentA").innerHTML = 'ON'
+                document.getElementById("segmentA").setAttribute("class","red")}
+            else {document.getElementById("segmentA").innerHTML = ''
+                document.getElementById("segmentA").setAttribute("class","black")}
+            if (signals[1] == '1'){
+                document.getElementById("segmentB").innerHTML = 'ON'
+                document.getElementById("segmentB").setAttribute("class","red")}
+            else {document.getElementById("segmentB").innerHTML = ''
+                document.getElementById("segmentB").setAttribute("class","black")}
+            if (signals[2] == '1'){
+                document.getElementById("segmentC").innerHTML = 'ON'
+                document.getElementById("segmentC").setAttribute("class","red")}
+            else {document.getElementById("segmentC").innerHTML = ''
+                document.getElementById("segmentC").setAttribute("class","black")}
+            if (signals[3] == '1'){
+                document.getElementById("segmentD").innerHTML = 'ON'
+                document.getElementById("segmentD").setAttribute("class","red")}
+            else {document.getElementById("segmentD").innerHTML = ''
+                document.getElementById("segmentD").setAttribute("class","black")}
+            if (signals[4] == '1'){
+                document.getElementById("segmentE").innerHTML = 'ON'
+                document.getElementById("segmentE").setAttribute("class","red")}
+            else {document.getElementById("segmentE").innerHTML = ''
+                document.getElementById("segmentE").setAttribute("class","black")}
+            if (signals[5] == '1'){
+                document.getElementById("segmentF").innerHTML = 'ON'
+                document.getElementById("segmentF").setAttribute("class","red")}
+            else {document.getElementById("segmentF").innerHTML = ''
+                document.getElementById("segmentF").setAttribute("class","black")}
+            if (signals[6] == '1'){
+                document.getElementById("segmentG").innerHTML = 'ON'
+                document.getElementById("segmentG").setAttribute("class","red")}
+            else {document.getElementById("segmentG").innerHTML = ''
+                document.getElementById("segmentG").setAttribute("class","black")}
+            
+        }
+        
     </script>
     </head>
 
@@ -114,8 +155,7 @@
                 <p id = "bin2ssd_output">???</p>
                  </td>
             <td class="blackbox"><h4>Illuminate Segments</h4>
-                 <p id = "illuminate_input">???</p>
-                 <p id = "illuminate_output">???</p>
+                 <p id = "segments">???</p>
                 <table>
                     <tr>
                         <td class="notsevenSegmentTable">1</td>
@@ -133,7 +173,7 @@
                     <tr>
                         <td class="notsevenSegmentTable">1</td>
                         <td id = "segmentG"
-                            class="sevenSegmentTable"G></td>
+                            class="sevenSegmentTable">G</td>
                         <td class="notsevenSegmentTable">3</td>
                     </tr>
                     <tr>
